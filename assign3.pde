@@ -2,7 +2,7 @@ float treasureX,treasureY;
 float fighterX,fighterY;
 float enemyX=0;
 float enemyY=random(0,419);
-float speed=2;
+float speed=1;
 int bgx1, bgx2;
 int gameState;
 float blood=38.8;
@@ -111,16 +111,16 @@ void draw() {
 
     for(int i=0;i<5;i++){
     enemyX+=speed;
-    image(img2,enemyX,enemyY);
-    translate(-80,0);
+    image(img2,enemyX-i*80,enemyY);
+    
     }
     break;
     
     case slash:
     for(int i=0;i<5;i++){
     enemyX+=speed;
-    image(img2,enemyX,enemyY);
-    translate(-80,60);
+    image(img2,enemyX-80*i,enemyY+60*i);
+    
     }
     break;
     
@@ -129,23 +129,13 @@ void draw() {
     for(int i=0;i<5;i++){
     enemyX+=speed;
     if(i==0||i==4){
-    translate(-80,0);
-    image(img2,enemyX,enemyY);
-    image(img2,enemyX,enemyY);
+    image(img2,enemyX-80*i,enemyY);
     }else if(i==1||i==3){
-    translate(-80,0);
-    pushMatrix();
-    translate(0,-60);
-    image(img2,enemyX,enemyY);
-    image(img2,enemyX,enemyY+121);
-    popMatrix();
+    image(img2,enemyX-80*i,enemyY-60);
+    image(img2,enemyX-80*i,enemyY-60+121);
     }else if(i==2){
-    translate(-80,0);
-    pushMatrix();
-    translate(0,-120);
-    image(img2,enemyX,enemyY);
-    image(img2,enemyX,enemyY+241);
-    popMatrix();
+    image(img2,enemyX-80*i,enemyY-120);
+    image(img2,enemyX-80*i,enemyY-120+241);
     }
    
    
@@ -156,7 +146,7 @@ void draw() {
     if(enemyX-80*4==width){
     count++;
     if(count%3==2){ 
-    enemyX=-60;
+    enemyX=-80;
     enemyY=random(0,175);
     switch(enemyMode){
     case line:
@@ -164,7 +154,7 @@ void draw() {
     break;
     }
     }else if(count%3==0){
-    enemyX=-60;
+    enemyX=-80;
     enemyY=random(121,298);
     switch(enemyMode){
     case slash:
@@ -172,7 +162,7 @@ void draw() {
     break;
     }
     }else if(count%3==1){
-    enemyX=-60;
+    enemyX=-80;
     enemyY=random(0,419);
     switch(enemyMode){
     case diamond:
